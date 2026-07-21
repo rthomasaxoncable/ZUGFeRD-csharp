@@ -385,6 +385,12 @@ namespace s2industries.ZUGFeRD
                 break; // only one occurrence allowed in UBL
             }
 
+            XmlNode receivingAdviceReferencedDocumentIdNode = baseNode.SelectSingleNode("/cac:ReceiptDocumentReference/cbc:ID", nsmgr);
+            if (receivingAdviceReferencedDocumentIdNode != null)
+            {
+                retval.SetReceivingAdviceReferencedDocument(receivingAdviceReferencedDocumentIdNode.InnerText);
+            }
+
             XmlNode despatchDocumentReferenceIdNode = baseNode.SelectSingleNode("./cac:DespatchDocumentReference/cbc:ID", nsmgr);
             if (despatchDocumentReferenceIdNode != null)
             {

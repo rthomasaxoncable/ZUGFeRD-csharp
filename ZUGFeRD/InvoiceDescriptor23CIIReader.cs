@@ -217,6 +217,15 @@ namespace s2industries.ZUGFeRD
                 retval.AddShipToTaxRegistration(id, EnumExtensions.StringToEnum<TaxRegistrationSchemeID>(schemeID));
             }
 
+            string receivingAdviceNo = XmlUtils.NodeAsString(doc.DocumentElement, "//ram:ApplicableHeaderTradeDelivery/ram:ReceivingAdviceReferencedDocument/ram:IssuerAssignedID", nsmgr);
+
+            if (!String.IsNullOrWhiteSpace(receivingAdviceNo))
+            {
+                retval.ReceivingAdviceReferencedDocument = new ReceivingAdviceReferencedDocument()
+                {
+                    ID = receivingAdviceNo
+                };
+            }
 
             string despatchAdviceNo = XmlUtils.NodeAsString(doc.DocumentElement, "//ram:ApplicableHeaderTradeDelivery/ram:DespatchAdviceReferencedDocument/ram:IssuerAssignedID", nsmgr);
             DateTime? despatchAdviceDate = XmlUtils.NodeAsDateTime(doc.DocumentElement, "//ram:ApplicableHeaderTradeDelivery/ram:DespatchAdviceReferencedDocument/ram:FormattedIssueDateTime/udt:DateTimeString", nsmgr);

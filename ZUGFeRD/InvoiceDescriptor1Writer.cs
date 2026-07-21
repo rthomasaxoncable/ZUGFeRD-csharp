@@ -218,6 +218,14 @@ namespace s2industries.ZUGFeRD
                 _Writer.WriteEndElement(); // !ActualDeliverySupplyChainEvent
             }
 
+            if(this._Descriptor.ReceivingAdviceReferencedDocument != null)
+            {
+                _WriteComment(_Writer, options, InvoiceCommentConstants.ReceivingAdviceReferencedDocumentComment);
+                _Writer.WriteStartElement("ram", "ReceivingAdviceReferencedDocument");
+                _Writer.WriteElementString("ram", "ID", this._Descriptor.ReceivingAdviceReferencedDocument.ID);
+                _Writer.WriteEndElement(); // !ReceivingAdviceReferencedDocument
+            }
+
             if (this._Descriptor.DeliveryNoteReferencedDocument != null)
             {
                 _WriteComment(_Writer, options, InvoiceCommentConstants.DespatchAdviceReferencedDocumentComment);

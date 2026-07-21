@@ -69,6 +69,11 @@ namespace s2industries.ZUGFeRD
         public List<AdditionalReferencedDocument> AdditionalReferencedDocuments { get; internal set; } = new List<AdditionalReferencedDocument>();
 
         /// <summary>
+        /// Detailed information about the corresponding receiving advice
+        /// </summary>
+        public ReceivingAdviceReferencedDocument ReceivingAdviceReferencedDocument { get; internal set; } = null;
+
+        /// <summary>
         /// Detailed information about the corresponding despatch advice
         /// </summary>
         public DespatchAdviceReferencedDocument DespatchAdviceReferencedDocument { get; internal set; } = null;
@@ -1003,6 +1008,18 @@ namespace s2industries.ZUGFeRD
             this.OrderNo = orderNo;
             this.OrderDate = orderDate;
         } // !SetBuyerOrderReferenceDocument()
+
+        /// <summary>
+        /// Sets the receiving advice reference information
+        /// </summary>
+        /// <param name="receivingAdviceNo">Receiving advice number</param>
+        public void SetReceivingAdviceReferencedDocument(string receivingAdviceNo)
+        {
+            this.ReceivingAdviceReferencedDocument = new ReceivingAdviceReferencedDocument()
+            {
+                ID = receivingAdviceNo,
+            };
+        } // !SetReceivingAdviceReferencedDocument()
 
         /// <summary>
         /// Sets the despatch advice reference information

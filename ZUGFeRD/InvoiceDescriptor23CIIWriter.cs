@@ -799,6 +799,16 @@ namespace s2industries.ZUGFeRD
             }
             #endregion
 
+            #region ReceivingAdviceReferencedDocument
+            if (this._Descriptor.ReceivingAdviceReferencedDocument != null)
+            {
+                _WriteComment(_Writer, options, InvoiceCommentConstants.ReceivingAdviceReferencedDocumentComment);
+                _Writer.WriteStartElement("ram", "ReceivingAdviceReferencedDocument", ALL_PROFILES ^ Profile.Minimum);
+                _Writer.WriteElementString("ram", "IssuerAssignedID", this._Descriptor.ReceivingAdviceReferencedDocument.ID);
+                _Writer.WriteEndElement(); // !ReceivingAdviceReferencedDocument
+            }
+            #endregion
+
             #region DespatchAdviceReferencedDocument
             if (this._Descriptor.DespatchAdviceReferencedDocument != null)
             {

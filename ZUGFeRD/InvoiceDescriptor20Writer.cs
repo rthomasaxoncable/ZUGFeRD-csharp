@@ -617,6 +617,13 @@ namespace s2industries.ZUGFeRD
                 _Writer.WriteEndElement(); // !DeliveryNoteReferencedDocument
             }
 
+            if (this._Descriptor.ReceivingAdviceReferencedDocument != null)
+            {
+                _Writer.WriteStartElement("ram", "ReceivingAdviceReferencedDocument");
+                _Writer.WriteElementString("ram", "IssuerAssignedID", this._Descriptor.ReceivingAdviceReferencedDocument.ID);
+                _Writer.WriteEndElement(); // !ReceivingAdviceReferencedDocument
+            }
+
             _Writer.WriteEndElement(); // !ApplicableHeaderTradeDelivery
 
             _WriteComment(_Writer, options, InvoiceCommentConstants.ApplicableHeaderTradeSettlementComment);

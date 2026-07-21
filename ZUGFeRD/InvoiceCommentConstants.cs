@@ -35,6 +35,7 @@ namespace s2industries.ZUGFeRD
         internal static string BuyerTradePartyComment = "Käufer";
         internal static string BuyerOrderReferencedDocumentComment = "Bestelldokument";
         internal static string ApplicableHeaderTradeDeliveryComment = "Lieferdaten samt abw. Lieferadresse";
+        internal static string ReceivingAdviceReferencedDocumentComment = "Wareneingangsschein";
         internal static string DespatchAdviceReferencedDocumentComment = "Lieferschein";
         internal static string ApplicableHeaderTradeSettlementComment = "Dokumentdaten";
         internal static string SpecifiedTradeSettlementPaymentMeansComment = "Zahlungsart mit Zahlungsinfo";
