@@ -178,7 +178,7 @@ namespace s2industries.ZUGFeRD.PDF
                 xmlChecksum = BitConverter.ToString(hashBytes).Replace("-", "").ToUpperInvariant();
             }
 
-            var xmlFileEncodedBytes = PdfSharp.Pdf.Filters.Filtering.FlateDecode.Encode(xmlFileBytes);
+            var xmlFileEncodedBytes = ZLibHelper.CompressWithBestCompression(xmlFileBytes);
 
             PdfDictionary xmlParamsDict = new PdfDictionary();
             xmlParamsDict.Elements.Add("/CheckSum", new PdfLiteral($"<{xmlChecksum}>"));
