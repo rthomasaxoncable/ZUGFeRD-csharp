@@ -1043,9 +1043,19 @@ namespace s2industries.ZUGFeRD
                         _Writer.WriteElementString("ram", "TypeCode", serviceCharge.Tax.TypeCode.EnumToString());
                     }
 
+                    if (!String.IsNullOrWhiteSpace(serviceCharge.Tax.ExemptionReason))
+                    {
+                        _Writer.WriteElementString("ram", "ExemptionReason", serviceCharge.Tax.ExemptionReason);
+                    }
+
                     if (serviceCharge.Tax.CategoryCode.HasValue)
                     {
                         _Writer.WriteElementString("ram", "CategoryCode", serviceCharge.Tax.CategoryCode.EnumToString());
+                    }
+
+                    if (serviceCharge.Tax.ExemptionReasonCode.HasValue)
+                    {
+                        _Writer.WriteElementString("ram", "ExemptionReasonCode", serviceCharge.Tax.ExemptionReasonCode.EnumToString());
                     }
 
                     _Writer.WriteElementString("ram", "RateApplicablePercent", _formatDecimal(serviceCharge.Tax.Percent));
@@ -1365,9 +1375,19 @@ namespace s2industries.ZUGFeRD
                     writer.WriteElementString("ram", "TypeCode", tradeAllowanceCharge.Tax.TypeCode.EnumToString());
                 }
 
+                if (!String.IsNullOrWhiteSpace(tradeAllowanceCharge.Tax.ExemptionReason))
+                {
+                    _Writer.WriteElementString("ram", "ExemptionReason", tradeAllowanceCharge.Tax.ExemptionReason);
+                }
+
                 if (tradeAllowanceCharge.Tax.CategoryCode.HasValue)
                 {
                     writer.WriteElementString("ram", "CategoryCode", tradeAllowanceCharge.Tax.CategoryCode.EnumToString());
+                }
+
+                if (tradeAllowanceCharge.Tax.ExemptionReasonCode.HasValue)
+                {
+                    _Writer.WriteElementString("ram", "ExemptionReasonCode", tradeAllowanceCharge.Tax.ExemptionReasonCode.EnumToString());
                 }
 
                 writer.WriteElementString("ram", "RateApplicablePercent", _formatDecimal(tradeAllowanceCharge.Tax.Percent));

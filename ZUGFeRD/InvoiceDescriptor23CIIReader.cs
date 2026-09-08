@@ -412,7 +412,9 @@ namespace s2industries.ZUGFeRD
                                                   XmlUtils.NodeAsString(node, ".//ram:Description", nsmgr),
                                                   EnumExtensions.StringToNullableEnum<TaxTypes>(XmlUtils.NodeAsString(node, ".//ram:AppliedTradeTax/ram:TypeCode", nsmgr)),
                                                   EnumExtensions.StringToNullableEnum<TaxCategoryCodes>(XmlUtils.NodeAsString(node, ".//ram:AppliedTradeTax/ram:CategoryCode", nsmgr)),
-                                                  XmlUtils.NodeAsDecimal(node, ".//ram:AppliedTradeTax/ram:RateApplicablePercent", nsmgr, 0).Value);
+                                                  XmlUtils.NodeAsDecimal(node, ".//ram:AppliedTradeTax/ram:RateApplicablePercent", nsmgr, 0).Value,
+                                                  EnumExtensions.StringToNullableEnum<TaxExemptionReasonCodes>(XmlUtils.NodeAsString(node, ".//ram:AppliedTradeTax/ram:ExemptionReasonCode", nsmgr)),
+                                                  XmlUtils.NodeAsString(node, ".//ram:AppliedTradeTax/ram:ExemptionReason", nsmgr));
             }
 
             foreach (XmlNode invoiceReferencedDocumentNodes in doc.DocumentElement.SelectNodes("//ram:ApplicableHeaderTradeSettlement/ram:InvoiceReferencedDocument", nsmgr))

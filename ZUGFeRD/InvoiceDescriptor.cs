@@ -1066,7 +1066,7 @@ namespace s2industries.ZUGFeRD
         } // !SetContractReferencedDocument()
 
 
-        internal void _AddLogisticsServiceCharge(decimal amount, string description, TaxTypes? taxTypeCode, TaxCategoryCodes? taxCategoryCode, decimal taxPercent)
+        internal void _AddLogisticsServiceCharge(decimal amount, string description, TaxTypes? taxTypeCode, TaxCategoryCodes? taxCategoryCode, decimal taxPercent, TaxExemptionReasonCodes? taxExemptionReasonCodes, string exemptionReason)
         {
             this.ServiceCharges.Add(new ServiceCharge()
             {
@@ -1076,7 +1076,9 @@ namespace s2industries.ZUGFeRD
                 {
                     CategoryCode = taxCategoryCode,
                     TypeCode = taxTypeCode,
-                    Percent = taxPercent
+                    Percent = taxPercent,
+                    ExemptionReasonCode = taxExemptionReasonCodes,
+                    ExemptionReason = exemptionReason
                 }
             });
         } // !AddLogisticsServiceCharge()
@@ -1094,9 +1096,9 @@ namespace s2industries.ZUGFeRD
         /// <param name="taxTypeCode">Type of tax</param>
         /// <param name="taxCategoryCode">Tax category</param>
         /// <param name="taxPercent">Tax percentage</param>
-        public void AddLogisticsServiceCharge(decimal amount, string description, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent)
+        public void AddLogisticsServiceCharge(decimal amount, string description, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent, TaxExemptionReasonCodes? taxExemptionReasonCodes, string exemptionReason)
         {
-            _AddLogisticsServiceCharge(amount, description, taxTypeCode, taxCategoryCode, taxPercent);
+            _AddLogisticsServiceCharge(amount, description, taxTypeCode, taxCategoryCode, taxPercent, taxExemptionReasonCodes, exemptionReason);
         } // !AddLogisticsServiceCharge()        
 
 
@@ -1115,15 +1117,15 @@ namespace s2industries.ZUGFeRD
         /// <param name="reasonCode">Optional reason code</param>
         public void AddTradeAllowance(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount,
                                       string reason, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent,
-                                      AllowanceReasonCodes? reasonCode = null)
+                                      AllowanceReasonCodes? reasonCode = null, string exemptionReason= null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
-            _AddTradeAllowance(basisAmount, currency, actualAmount, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode);
+            _AddTradeAllowance(basisAmount, currency, actualAmount, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode, exemptionReason, exemptionReasonCode);
         } // !AddTradeAllowance()
 
 
         internal void _AddTradeAllowance(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount,
                                          string reason, TaxTypes? taxTypeCode, TaxCategoryCodes? taxCategoryCode, decimal taxPercent,
-                                         AllowanceReasonCodes? reasonCode = null)
+                                         AllowanceReasonCodes? reasonCode = null, string exemptionReason = null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
             this.TradeAllowanceCharges.Add(new TradeAllowance()
             {
@@ -1138,7 +1140,9 @@ namespace s2industries.ZUGFeRD
                 {
                     CategoryCode = taxCategoryCode,
                     TypeCode = taxTypeCode,
-                    Percent = taxPercent
+                    Percent = taxPercent,
+                    ExemptionReasonCode = exemptionReasonCode,
+                    ExemptionReason = exemptionReason
                 }
             });
         } // !AddTradeAllowance()
@@ -1161,16 +1165,16 @@ namespace s2industries.ZUGFeRD
         public void AddTradeCharge(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount,
                                    decimal? chargePercentage,
                                    string reason, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent,
-                                   ChargeReasonCodes? reasonCode = null)
+                                   ChargeReasonCodes? reasonCode = null, string exemptionReason = null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
-            _AddTradeCharge(basisAmount, currency, actualAmount, chargePercentage, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode);
+            _AddTradeCharge(basisAmount, currency, actualAmount, chargePercentage, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode, exemptionReason, exemptionReasonCode);
         } // !AddTradeCharge()
 
 
         internal void _AddTradeCharge(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount,
                                       decimal? chargePercentage,
                                       string reason, TaxTypes? taxTypeCode, TaxCategoryCodes? taxCategoryCode, decimal taxPercent,
-                                      ChargeReasonCodes? reasonCode = null)
+                                      ChargeReasonCodes? reasonCode = null, string exemptionReason = null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
             this.TradeAllowanceCharges.Add(new TradeCharge()
             {
@@ -1185,7 +1189,9 @@ namespace s2industries.ZUGFeRD
                 {
                     CategoryCode = taxCategoryCode,
                     TypeCode = taxTypeCode,
-                    Percent = taxPercent
+                    Percent = taxPercent,
+                    ExemptionReasonCode = exemptionReasonCode,
+                    ExemptionReason = exemptionReason
                 }
             });
         } // !AddTradeCharge()
@@ -1206,15 +1212,15 @@ namespace s2industries.ZUGFeRD
         /// <param name="reasonCode">Optional reason code</param>
         public void AddTradeCharge(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount,
                                    string reason, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent,
-                                   ChargeReasonCodes? reasonCode = null)
+                                   ChargeReasonCodes? reasonCode = null, string exemptionReason = null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
-            _AddTradeCharge(basisAmount, currency, actualAmount, null, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode);
+            _AddTradeCharge(basisAmount, currency, actualAmount, null, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode, exemptionReason, exemptionReasonCode);
         } // !AddTradeCharge()
 
 
         internal void _AddTradeCharge(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount,
                                       string reason, TaxTypes? taxTypeCode, TaxCategoryCodes? taxCategoryCode, decimal taxPercent,
-                                      ChargeReasonCodes? reasonCode = null)
+                                      ChargeReasonCodes? reasonCode = null, string exemptionReason = null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
             this.TradeAllowanceCharges.Add(new TradeCharge()
             {
@@ -1229,7 +1235,9 @@ namespace s2industries.ZUGFeRD
                 {
                     CategoryCode = taxCategoryCode,
                     TypeCode = taxTypeCode,
-                    Percent = taxPercent
+                    Percent = taxPercent,
+                    ExemptionReasonCode = exemptionReasonCode,
+                    ExemptionReason = exemptionReason
                 }
             });
         } // !AddTradeCharge()        
@@ -1249,13 +1257,13 @@ namespace s2industries.ZUGFeRD
         /// <param name="taxCategoryCode">VAT type code for document level allowance</param>
         /// <param name="taxPercent">VAT rate for the allowance</param>
         /// <param name="reasonCode">Reason code for the allowance</param>
-        public void AddTradeAllowance(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount, decimal? chargePercentage, string reason, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent, AllowanceReasonCodes? reasonCode = null)
+        public void AddTradeAllowance(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount, decimal? chargePercentage, string reason, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent, AllowanceReasonCodes? reasonCode = null, string exemptionReason = null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
-            _AddTradeAllowance(basisAmount, currency, actualAmount, chargePercentage, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode);
+            _AddTradeAllowance(basisAmount, currency, actualAmount, chargePercentage, reason, taxTypeCode, taxCategoryCode, taxPercent, reasonCode, exemptionReason, exemptionReasonCode);
         } // !AddTradeAllowance()
 
 
-        internal void _AddTradeAllowance(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount, decimal? chargePercentage, string reason, TaxTypes? taxTypeCode, TaxCategoryCodes? taxCategoryCode, decimal taxPercent, AllowanceReasonCodes? reasonCode = null)
+        internal void _AddTradeAllowance(decimal? basisAmount, CurrencyCodes currency, decimal actualAmount, decimal? chargePercentage, string reason, TaxTypes? taxTypeCode, TaxCategoryCodes? taxCategoryCode, decimal taxPercent, AllowanceReasonCodes? reasonCode = null, string exemptionReason = null, TaxExemptionReasonCodes? exemptionReasonCode = null)
         {
             this.TradeAllowanceCharges.Add(new TradeAllowance()
             {
@@ -1270,7 +1278,9 @@ namespace s2industries.ZUGFeRD
                 {
                     CategoryCode = taxCategoryCode,
                     TypeCode = taxTypeCode,
-                    Percent = taxPercent
+                    Percent = taxPercent,
+                    ExemptionReasonCode = exemptionReasonCode,
+                    ExemptionReason = exemptionReason
                 }
             });
         } // !AddTradeAllowance()
